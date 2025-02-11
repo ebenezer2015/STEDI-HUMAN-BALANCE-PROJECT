@@ -40,31 +40,29 @@ Working as a Data Engineer for the STEDI team on this project, I am required to 
 
 The STEDI team has provided three JSON data sources for use from the Step Trainer. These JSON data in the following folders in the Team's Github repo:
 
-* Customer Records: from fulfillment and the STEDI website. It contains the following fields:
+**Customer Records**: This holds data from the fulfillment and the STEDI website. It contains the following fields:
+    * serialnumber
+    * sharewithpublicasofdate
+    * birthday
+    * registrationdate
+    * sharewithresearchasofdate
+    * customername
+    * email
+    * lastupdatedate
+    * phone
+    * sharewithfriendsasofdate 
 
-serialnumber
-sharewithpublicasofdate
-birthday
-registrationdate
-sharewithresearchasofdate
-customername
-email
-lastupdatedate
-phone
-sharewithfriendsasofdate 
+**Step Trainer Records**: This holds data from the motion sensor. It contains the following fields:
+    * sensorReadingTime
+    * serialNumber
+    * distanceFromObject
 
-* Step Trainer Records: data from the motion sensor. It contains the following fields:
-
-sensorReadingTime
-serialNumber
-distanceFromObject
-
-* Accelerometer Records: data from the mobile app. It contains the following fields:
-timeStamp
-user
-x
-y
-z
+**Accelerometer Records**: This holds data from the mobile app. It contains the following fields:
+   * timeStamp
+   * user
+   * x
+   * y
+   * z
 ---
 
 ## Implementation
