@@ -61,11 +61,13 @@ The STEDI team has provided three JSON data sources for use from the Step Traine
 
 **Accelerometer Records**: This holds data from the mobile app. It contains the following fields:
 
-   * timeStamp
-   * user
-   * x
-   * y
-   * z
+
+    * timeStamp
+    * user
+    * x
+    * y
+    * z
+
 ---
 
 ## Implementation
