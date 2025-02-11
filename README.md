@@ -1,15 +1,15 @@
-# Project: STEDI-Human-Balance-Analytics
+# Project: STEDI-Human-Balance-Projects
 
 ## Contents
 
-+ [Problem Statement](#Problem-Statement)
++ [Problem Details](#Problem-Details)
 + [Project Discription](#Project-Discription)
 + [Project Datasets](#Project-Datasets)
 + [Implementation](#Implementation)
 
 
 ---
-## Problem Statement
+## Problem Details
 
 The STEDI Team has been hard at work developing a hardware STEDI Step Trainer that:
 - trains the user to do a STEDI balance exercise
@@ -28,20 +28,43 @@ Some of the early adopters have agreed to share their data for research purposes
 
 ### Project Discription
 
-In this project I extracted data produced by the STEDI Step Trainer sensors and the mobile app, and curated them into a data lakehouse solution on AWS. The intent is for Data Scientists to use the solution to train machine learning models. 
+Working as a Data Engineer for the STEDI team on this project, I am required to extract data produced by the STEDI Step Trainer sensors and the mobile app, and curated them into a data lakehouse solution on AWS so that Data Scientists can train the learning model.. 
 
-The Data lake solution is developed using AWS Glue, AWS S3, Python, and Spark for sensor data that trains machine learning algorithms.
-
-AWS infrastructure is used to create storage zones (landing, trusted and curated), data catalog, data transformations between zones and queries in semi-structured data.
+* AWS Environment: The Data lake solution is developed using AWS Glue, AWS S3, Python, and Spark for sensor data that trains machine learning algorithms.
+  AWS infrastructure is used to create storage zones (landing, trusted and curated), data catalog, data transformations between zones and queries in semi-structured data.
+* Github Environment: I also need a GitHub repository to store the SQL scripts and Python code for reviews by other developers.
 
 ---
 
 ## Project Datasets
 
-* Customer Records: from fulfillment and the STEDI website.  
-* Step Trainer Records: data from the motion sensor.
-* Accelerometer Records: data from the mobile app.
+The STEDI team has provided three JSON data sources for use from the Step Trainer. These JSON data in the following folders in the Team's Github repo:
 
+* Customer Records: from fulfillment and the STEDI website. It contains the following fields:
+
+serialnumber
+sharewithpublicasofdate
+birthday
+registrationdate
+sharewithresearchasofdate
+customername
+email
+lastupdatedate
+phone
+sharewithfriendsasofdate 
+
+* Step Trainer Records: data from the motion sensor. It contains the following fields:
+
+sensorReadingTime
+serialNumber
+distanceFromObject
+
+* Accelerometer Records: data from the mobile app. It contains the following fields:
+timeStamp
+user
+x
+y
+z
 ---
 
 ## Implementation
