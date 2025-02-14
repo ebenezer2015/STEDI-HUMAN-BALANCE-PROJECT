@@ -82,15 +82,15 @@ Using The AWS glue data catalog, I created a glue tables so that I can query the
 
 1- Customer Landing Table:
 
-[customer_landing_sample_data.png](customer_landing_sample_data.png)
+[/Projects/github/STEDI-HUMAN-BALANCE-PROJECT/customer_landing_sample_data.png](customer_landing_sample_data.png)
 
 2- Accelerometer Landing Table: 
 
-[accelerometer_landing_sample_data.png](accelerometer_landing_sample_data.png)
+[/Projects/github/STEDI-HUMAN-BALANCE-PROJECT/accelerometer_landing_sample_data.png](accelerometer_landing_sample_data.png)
 
 3- Step Trainer Landing Table: 
 
-[step_trainer_landing_sample_data.png](step_trainer_landing_sample_data.png)
+[/Projects/github/STEDI-HUMAN-BALANCE-PROJECT/step_trainer_landing_sample_data.png](step_trainer_landing_sample_data.png)
 
 </details>
 
