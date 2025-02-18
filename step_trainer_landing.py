@@ -25,6 +25,8 @@ step_trainer_node1739363051967 = glueContext.create_dynamic_frame.from_options(f
 
 # Script generated for node step_trainer landing
 EvaluateDataQuality().process_rows(frame=step_trainer_node1739363051967, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739358730044", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-step_trainerlanding_node1739363304581 = glueContext.write_dynamic_frame.from_options(frame=step_trainer_node1739363051967, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/step_trainer/landing/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="step_trainerlanding_node1739363304581")
-
+step_trainerlanding_node1739363304581 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/step_trainer/landing/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="step_trainerlanding_node1739363304581")
+step_trainerlanding_node1739363304581.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="step_trainer_landing1")
+step_trainerlanding_node1739363304581.setFormat("json")
+step_trainerlanding_node1739363304581.writeFrame(step_trainer_node1739363051967)
 job.commit()

@@ -31,6 +31,8 @@ Join_node1739377966082 = Join.apply(frame1=AccelerometerTrusted_node173937789205
 
 # Script generated for node machine_learning_curated
 EvaluateDataQuality().process_rows(frame=Join_node1739377966082, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739368873845", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-machine_learning_curated_node1739378055926 = glueContext.write_dynamic_frame.from_options(frame=Join_node1739377966082, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/curated/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="machine_learning_curated_node1739378055926")
-
+machine_learning_curated_node1739378055926 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/curated/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="machine_learning_curated_node1739378055926")
+machine_learning_curated_node1739378055926.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="machine_learning_curated1")
+machine_learning_curated_node1739378055926.setFormat("json")
+machine_learning_curated_node1739378055926.writeFrame(Join_node1739377966082)
 job.commit()

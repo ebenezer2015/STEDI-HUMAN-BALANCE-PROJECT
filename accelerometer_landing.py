@@ -25,6 +25,8 @@ accelerometer_node1739364454356 = glueContext.create_dynamic_frame.from_options(
 
 # Script generated for node accelerometer_landing
 EvaluateDataQuality().process_rows(frame=accelerometer_node1739364454356, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739358730044", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-accelerometer_landing_node1739364582513 = glueContext.write_dynamic_frame.from_options(frame=accelerometer_node1739364454356, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/accelerometer/landing/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="accelerometer_landing_node1739364582513")
-
+accelerometer_landing_node1739364582513 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/accelerometer/landing/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="accelerometer_landing_node1739364582513")
+accelerometer_landing_node1739364582513.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="accelerometer_landing1")
+accelerometer_landing_node1739364582513.setFormat("json")
+accelerometer_landing_node1739364582513.writeFrame(accelerometer_node1739364454356)
 job.commit()

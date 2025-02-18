@@ -31,6 +31,8 @@ Join_node1739376115712 = Join.apply(frame1=CustomerTrusted_node1739376053845, fr
 
 # Script generated for node StepTrainerTrusted
 EvaluateDataQuality().process_rows(frame=Join_node1739376115712, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739368873845", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-StepTrainerTrusted_node1739376306719 = glueContext.write_dynamic_frame.from_options(frame=Join_node1739376115712, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/step_trainer/trusted/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="StepTrainerTrusted_node1739376306719")
-
+StepTrainerTrusted_node1739376306719 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/step_trainer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="StepTrainerTrusted_node1739376306719")
+StepTrainerTrusted_node1739376306719.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="step_trainer_trusted1")
+StepTrainerTrusted_node1739376306719.setFormat("json")
+StepTrainerTrusted_node1739376306719.writeFrame(Join_node1739376115712)
 job.commit()

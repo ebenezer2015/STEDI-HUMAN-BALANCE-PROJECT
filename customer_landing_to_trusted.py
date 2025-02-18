@@ -30,15 +30,16 @@ DEFAULT_DATA_QUALITY_RULESET = """
 customerlanding_node1739366287601 = glueContext.create_dynamic_frame.from_options(format_options={"multiLine": "false"}, connection_type="s3", format="json", connection_options={"paths": ["s3://stedi-lake-house-for-udacity-project/customer/landing/"], "recurse": True}, transformation_ctx="customerlanding_node1739366287601")
 
 # Script generated for node ReasearchFilter
-SqlQuery2273 = '''
+SqlQuery0 = '''
 select * from myDataSource
 where sharewithresearchasofdate is not null
-
 '''
-ReasearchFilter_node1739366401030 = sparkSqlQuery(glueContext, query = SqlQuery2273, mapping = {"myDataSource":customerlanding_node1739366287601}, transformation_ctx = "ReasearchFilter_node1739366401030")
+ReasearchFilter_node1739366401030 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":customerlanding_node1739366287601}, transformation_ctx = "ReasearchFilter_node1739366401030")
 
 # Script generated for node CustomerLanding To TrustedZone
 EvaluateDataQuality().process_rows(frame=ReasearchFilter_node1739366401030, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739366247721", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-CustomerLandingToTrustedZone_node1739366892622 = glueContext.write_dynamic_frame.from_options(frame=ReasearchFilter_node1739366401030, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/customer/trusted/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="CustomerLandingToTrustedZone_node1739366892622")
-
+CustomerLandingToTrustedZone_node1739366892622 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/customer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="CustomerLandingToTrustedZone_node1739366892622")
+CustomerLandingToTrustedZone_node1739366892622.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="customer_landing_to_trusted1")
+CustomerLandingToTrustedZone_node1739366892622.setFormat("json")
+CustomerLandingToTrustedZone_node1739366892622.writeFrame(ReasearchFilter_node1739366401030)
 job.commit()

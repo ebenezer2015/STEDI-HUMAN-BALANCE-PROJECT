@@ -31,6 +31,8 @@ TableJoin_node1739370565106 = Join.apply(frame1=CustomerTrusted_node173936901455
 
 # Script generated for node AccelerometerTrusted
 EvaluateDataQuality().process_rows(frame=TableJoin_node1739370565106, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1739368873845", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-AccelerometerTrusted_node1739369269822 = glueContext.write_dynamic_frame.from_options(frame=TableJoin_node1739370565106, connection_type="s3", format="json", connection_options={"path": "s3://stedi-lake-house-for-udacity-project/accelerometer/trusted/", "compression": "gzip", "partitionKeys": []}, transformation_ctx="AccelerometerTrusted_node1739369269822")
-
+AccelerometerTrusted_node1739369269822 = glueContext.getSink(path="s3://stedi-lake-house-for-udacity-project/accelerometer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], compression="gzip", enableUpdateCatalog=True, transformation_ctx="AccelerometerTrusted_node1739369269822")
+AccelerometerTrusted_node1739369269822.setCatalogInfo(catalogDatabase="stediprojecttask_",catalogTableName="accelerometer_trusted1")
+AccelerometerTrusted_node1739369269822.setFormat("json")
+AccelerometerTrusted_node1739369269822.writeFrame(TableJoin_node1739370565106)
 job.commit()
